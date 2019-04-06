@@ -115,7 +115,7 @@ public:
                         return(chunk_alloc(size, nobjs));//递归调用自己，为了修正nobjs
                     }
                 }
-                end_free = 0;
+                end_free = 0;//99行已经malloc失败了为什么这里还要再次调用？这两个函数不一样，下面是重载的new第一种，分配失败会抛异常
                 start_free = (char *)malloc_alloc::allocate(bytes_to_get);//如果连这个大的数据块都找不出来则调用第一级配置器
             }
             //如果分配成功
